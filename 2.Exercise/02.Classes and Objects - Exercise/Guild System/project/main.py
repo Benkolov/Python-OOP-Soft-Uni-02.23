@@ -1,5 +1,5 @@
-from player import Player
-from guild import Guild
+from project.player import Player
+from project.guild import Guild
 
 player = Player("George", 50, 100)
 print(player.add_skill("Shield Break", 20))
