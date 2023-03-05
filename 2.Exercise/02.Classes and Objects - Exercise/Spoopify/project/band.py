@@ -1,5 +1,5 @@
 from typing import List
-from project2.album import Album
+from project.album import Album
 
 
 class Band:
@@ -9,15 +9,15 @@ class Band:
 
     def add_album(self, album: Album) -> str:
         if album in self.albums:
-            return f"Band {self.name} already has {album.name} in their library."
+            return f"Band {self.name} already has {album.username} in their library."
 
         self.albums.append(album)
 
-        return f"Band {self.name} has added their newest album {album.name}."
+        return f"Band {self.name} has added their newest album {album.username}."
 
     def remove_album(self, album_name: str) -> str:
         try:
-            album = next(filter(lambda a: a.name == album_name, self.albums))
+            album = next(filter(lambda a: a.username == album_name, self.albums))
         except StopIteration:
             return f"Album {album_name} is not found."
 

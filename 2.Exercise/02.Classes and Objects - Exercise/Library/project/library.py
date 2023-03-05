@@ -1,5 +1,5 @@
 from typing import List, Dict
-from project4.user import User
+from project.user import User
 
 
 class Library:

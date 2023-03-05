@@ -1,4 +1,4 @@
-from project3.task import Task
+from project.task import Task
 
 
 class Section:
@@ -14,7 +14,7 @@ class Section:
 
     def complete_task(self, task_name: str):
         for task in self.tasks:
-            if task.name == task_name:
+            if task.username == task_name:
                 task.completed = True
                 return f"Completed task {task_name}"
         return f"Could not find task with the name {task_name}"

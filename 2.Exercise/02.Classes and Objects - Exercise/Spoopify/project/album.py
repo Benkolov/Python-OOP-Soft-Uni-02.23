@@ -1,5 +1,5 @@
 from typing import Tuple, List
-from project2.song import Song
+from project.song import Song
 
 
 class Album:
@@ -10,7 +10,7 @@ class Album:
 
     def add_song(self, song: Song) -> str:
         if song.single:
-            return f"Cannot add {song.name}. It's a single"
+            return f"Cannot add {song.username}. It's a single"
         if self.published:
             return "Cannot add songs. Album is published."
         if song in self.songs:
@@ -18,11 +18,11 @@ class Album:
 
         self.songs.append(song)
 
-        return f"Song {song.name} has been added to the album {self.name}."
+        return f"Song {song.username} has been added to the album {self.name}."
 
     def remove_song(self, song_name: str) -> str:
         try:
-            song = next(filter(lambda s: s.name == song_name, self.songs))
+            song = next(filter(lambda s: s.username == song_name, self.songs))
         except StopIteration:
             return "Song is not in the album."
 
