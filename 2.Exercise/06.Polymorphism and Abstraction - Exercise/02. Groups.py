@@ -3,9 +3,6 @@ class Person:
         self.name = name
         self.surname = surname
 
-    def __repr__(self):
-        return f"{self.name} {self.surname}"
-
     def __str__(self):
         return f"{self.name} {self.surname}"
 
@@ -18,26 +15,20 @@ class Group:
         self.name = name
         self.people = people
 
-    def __repr__(self):
-        members = ", ".join(str(person) for person in self.people)
-        return f"Group {self.name} with members {members}"
-
     def __len__(self):
         return len(self.people)
 
-    def __getitem__(self, index):
-        return self.people[index]
-
     def __add__(self, other):
-        name = f"{self.people[0].name} {other.people[0].name}"
-        people = self.people + other.people
-        return Group(name, people)
+        return Group(f'{self.name} {other.name}', self.people + other.people)
 
     def __iter__(self):
         return iter(self.people)
 
-    def __next__(self):
-        return next(self.people)
+    def __getitem__(self, index):
+        return f'Person {index}: {str(self.people[index])}'
+
+    def __str__(self):
+        return f"Group {self.name} with members {', '.join([str(x) for x in self.people])}"
 
 
 p0 = Person('Aliko', 'Dangote')
