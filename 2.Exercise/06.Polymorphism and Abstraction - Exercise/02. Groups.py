@@ -6,6 +6,9 @@ class Person:
     def __repr__(self):
         return f"{self.name} {self.surname}"
 
+    def __str__(self):
+        return f"{self.name} {self.surname}"
+
     def __add__(self, other):
         return Person(self.name, other.surname)
 
@@ -16,31 +19,25 @@ class Group:
         self.people = people
 
     def __repr__(self):
-        members = ", ".join([str(person) for person in self.people])
+        members = ", ".join(str(person) for person in self.people)
         return f"Group {self.name} with members {members}"
 
     def __len__(self):
         return len(self.people)
 
+    def __getitem__(self, index):
+        return self.people[index]
+
     def __add__(self, other):
-        name = f"{self.people[0].name} {other.people[0].surname}"
+        name = f"{self.people[0].name} {other.people[0].name}"
         people = self.people + other.people
         return Group(name, people)
 
     def __iter__(self):
-        self.index = 0
-        return self
+        return iter(self.people)
 
     def __next__(self):
-        if self.index >= len(self.people):
-            raise StopIteration
-        else:
-            person = self.people[self.index]
-            self.index += 1
-            return f"Person {self.index}: {person}"
-
-    def __getitem__(self, index):
-        return self.people[index]
+        return next(self.people)
 
 
 p0 = Person('Aliko', 'Dangote')
