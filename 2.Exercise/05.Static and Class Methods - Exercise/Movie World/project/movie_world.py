@@ -1,11 +1,10 @@
 from typing import List
-
 from project.customer import Customer
 from project.dvd import DVD
 
 
 class MovieWorld:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self.customers: List[Customer] = []
         self.dvds: List[DVD] = []
@@ -22,11 +21,11 @@ class MovieWorld:
         if len(self.customers) < self.customer_capacity():
             self.customers.append(customer)
 
-    def add_dvd(self, dvd: DVD):
+    def add_dvd(self, dvd: DVD) -> None:
         if len(self.dvds) < self.dvd_capacity():
             self.dvds.append(dvd)
 
-    def rent_dvd(self, customer_id: int, dvd_id: int):
+    def rent_dvd(self, customer_id: int, dvd_id: int) -> str:
         customer = [c for c in self.customers if c.id == customer_id][0]
         dvd = [d for d in self.dvds if d.id == dvd_id][0]
 
@@ -44,7 +43,7 @@ class MovieWorld:
 
         return f"{customer.name} has successfully rented {dvd.name}"
 
-    def return_dvd(self, customer_id, dvd_id):
+    def return_dvd(self, customer_id: int, dvd_id: int) -> str:
         customer = [c for c in self.customers if c.id == customer_id][0]
         dvd = [d for d in self.dvds if d.id == dvd_id][0]
 
@@ -57,4 +56,7 @@ class MovieWorld:
         return f"{customer.name} has successfully returned {dvd.name}"
 
     def __repr__(self):
-        return
+        return "\n".join([
+            *[str(c) for c in self.customers],
+            *[str(d) for d in self.dvds]
+        ])
