@@ -6,6 +6,9 @@ class Person:
     def __init__(self, position):
         self.position = position
 
+
+class FreePerson(Person):
+
     def walk_north(self, dist):
         self.position[1] += dist
 
@@ -17,7 +20,7 @@ class Prisoner(Person):
     PRISON_LOCATION = [3, 3]
 
     def __init__(self):
-        super(Prisoner, self).__init__(copy.copy(self.PRISON_LOCATION))
+        super().__init__(copy.copy(self.PRISON_LOCATION))
         self.is_free = False
 
 
@@ -32,3 +35,6 @@ except:
 
 print(f"The location of the prison: {prisoner.PRISON_LOCATION}")
 print(f"The current position of the prisoner: {prisoner.position}")
+
+
+
