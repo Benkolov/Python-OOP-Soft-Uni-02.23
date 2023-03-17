@@ -71,6 +71,81 @@ class Car:
 
         self.__fuel_amount -= needed
 
-car = Car("a", "b", 1, 4)
-car.make = ""
-print(car)
+# car = Car("a", "b", 1, 4)
+# car.make = ""
+# print(car)
+
+import unittest
+
+class TestCar(unittest.TestCase):
+
+    def test_constructor(self):
+        car = Car("Make", "Model", 10, 50)
+        self.assertEqual(car.make, "Make")
+        self.assertEqual(car.model, "Model")
+        self.assertEqual(car.fuel_consumption, 10)
+        self.assertEqual(car.fuel_capacity, 50)
+        self.assertEqual(car.fuel_amount, 0)
+
+    def test_make_setter(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.make = ""
+        self.assertEqual(str(context.exception), "Make cannot be null or empty!")
+
+    def test_model_setter(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.model = ""
+        self.assertEqual(str(context.exception), "Model cannot be null or empty!")
+
+    def test_fuel_consumption_setter(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.fuel_consumption = -5
+        self.assertEqual(str(context.exception), "Fuel consumption cannot be zero or negative!")
+
+    def test_fuel_capacity_setter(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.fuel_capacity = -5
+        self.assertEqual(str(context.exception), "Fuel capacity cannot be zero or negative!")
+
+    def test_fuel_amount_setter(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.fuel_amount = -5
+        self.assertEqual(str(context.exception), "Fuel amount cannot be negative!")
+
+    def test_refuel(self):
+        car = Car("Make", "Model", 10, 50)
+        car.refuel(20)
+        self.assertEqual(car.fuel_amount, 20)
+
+    def test_refuel_negative_amount(self):
+        car = Car("Make", "Model", 10, 50)
+        with self.assertRaises(Exception) as context:
+            car.refuel(-5)
+        self.assertEqual(str(context.exception), "Fuel amount cannot be zero or negative!")
+
+    def test_refuel_over_capacity(self):
+        car = Car("Make", "Model", 10, 50)
+        car.refuel(60)
+        self.assertEqual(car.fuel_amount, 50)
+
+    def test_drive(self):
+        car = Car("Make", "Model", 10, 50)
+        car.refuel(50)
+        car.drive(100)
+        self.assertEqual(car.fuel_amount, 40)
+
+    def test_drive_not_enough_fuel(self):
+        car = Car("Make", "Model", 10, 50)
+        car.refuel(10)
+        with self.assertRaises(Exception) as context:
+            car.drive(200)
+        self.assertEqual(str(context.exception), "You don't have enough fuel to drive!")
+
+
+if __name__ == '__main__':
+    unittest.main()
