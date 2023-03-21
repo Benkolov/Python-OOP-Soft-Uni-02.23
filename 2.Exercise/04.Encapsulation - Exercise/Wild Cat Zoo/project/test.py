@@ -1,5 +1,3 @@
-from project.worker import Worker
-from project.animal import Animal
 from project.lion import Lion
 from project.tiger import Tiger
 from project.cheetah import Cheetah
