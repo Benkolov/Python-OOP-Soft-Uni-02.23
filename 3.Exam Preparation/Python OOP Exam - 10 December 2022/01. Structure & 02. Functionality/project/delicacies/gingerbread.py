@@ -2,8 +2,10 @@ from project.delicacies.delicacy import Delicacy
 
 
 class Gingerbread(Delicacy):
-    def __init__(self, name, portion, price):
-        super().__init__(name, portion, price)
+    PORTION: int = 200
+
+    def __init__(self, name, price):
+        super().__init__(name, self.PORTION, price)
 
     def details(self):
-        return f"Gingerbread {self.name}: 200g - {self.price:.2f}lv."
+        return f"Gingerbread {self.name}: {self.PORTION}g - {self.price:.2f}lv."
