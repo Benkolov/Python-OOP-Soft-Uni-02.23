@@ -1,5 +1,4 @@
 from custom_list import CustomList
-import unittest
 
 # class TestCustomList(unittest.TestCase):
 #     def test_append(self):

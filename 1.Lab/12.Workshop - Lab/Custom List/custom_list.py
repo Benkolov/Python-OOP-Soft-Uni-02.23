@@ -68,10 +68,14 @@ class CustomList:
         return total
 
     def overbound(self):
-        return max(range(len(self.data)), key=lambda i: self.data[i] if isinstance(self.data[i], (int, float)) else len(self.data[i]))
+        return max(range(len(self.data)),
+                   key=lambda i: self.data[i] if isinstance(self.data[i],
+                   (int, float)) else len(self.data[i]))
 
     def underbound(self):
-        return min(range(len(self.data)), key=lambda i: self.data[i] if isinstance(self.data[i], (int, float)) else len(self.data[i]))
+        return min(range(len(self.data)),
+                   key=lambda i: self.data[i] if isinstance(self.data[i],
+                   (int, float)) else len(self.data[i]))
 
     def is_empty(self):
         return len(self.data) == 0
@@ -119,12 +123,21 @@ class CustomList:
 
 
 lst = CustomList()
-lst.append(1)
-lst.append(1)
-lst.append(1)
-lst.append(1)
-lst.append(1)
-result = lst.concat([1,2,3,4,5,6,7,8,9,10,11])
+lst.append(78)
+lst.append(56)
+lst.append(7)
+lst.append(4)
+lst.append(11)
+lst.append(5)
+lst.append(34)
+lst.append("Boyan")
+lst.append(78)
+lst.append(78)
+lst.append(67)
+lst.append(45)
+a = lst.concat([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+print(lst.overbound())
+print(lst.underbound())
 print(lst)
-print(result)
+print(a)
 print(lst.is_empty())
