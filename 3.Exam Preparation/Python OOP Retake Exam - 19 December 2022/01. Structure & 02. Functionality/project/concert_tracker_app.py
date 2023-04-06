@@ -41,7 +41,7 @@ class ConcertTrackerApp:
     def create_concert(self, genre: str, audience: int, ticket_price: float, expenses: float, place: str):
         existing_concert_same_place = [c for c in self.concerts if c.place == place]
         if existing_concert_same_place:
-            raise Exception(f"{place} is already registered for {genre} concert!")
+            raise Exception(f"{place} is already registered for {existing_concert_same_place[0].genre} concert!")
 
         c = Concert(genre, audience, ticket_price, expenses, place)
         self.concerts.append(c)

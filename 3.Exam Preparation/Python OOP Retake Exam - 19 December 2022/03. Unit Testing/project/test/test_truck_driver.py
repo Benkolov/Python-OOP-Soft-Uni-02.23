@@ -82,7 +82,7 @@ class TestTruckDriver(TestCase):
     def test_sleep(self):
         self.driver.earned_money = 50
         self.driver.sleep(1000)
-        assert  self.driver.earned_money == 5
+        assert self.driver.earned_money == 5
 
     def test_pump_gas(self):
         self.driver.earned_money = 600
