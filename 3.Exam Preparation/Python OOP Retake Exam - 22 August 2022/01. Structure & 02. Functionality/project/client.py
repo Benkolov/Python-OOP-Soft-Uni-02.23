@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Client:
     def __init__(self, phone_number: str):
         self.phone_number = phone_number
-        self.shopping_cart: List = []
+        self.shopping_cart = []
         self.bill: float = 0
 
     @property
