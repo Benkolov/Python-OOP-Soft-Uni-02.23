@@ -12,7 +12,7 @@ class Concert:
 
     @genre.setter
     def genre(self, value):
-        if value != "Metal" or value != "Rock" or value != "Jazz":
+        if value not in ("Metal", "Rock", "Jazz"):
             raise ValueError(f"Our group doesn't play {value}!")
         self.__genre = value
 
